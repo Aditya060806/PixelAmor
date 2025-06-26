@@ -131,7 +131,6 @@ function FrameSlot({ idx, children, isOver, isCorrect }: {
 const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ imageUrl, onComplete, onMove }) => {
   const [frameTiles, setFrameTiles] = useState<number[]>([])
   const [tiles, setTiles] = useState<PuzzleTile[]>([])
-  const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const [overIdx, setOverIdx] = useState<number | null>(null)
   const [isShuffling, setIsShuffling] = useState(true)
   const [progress, setProgress] = useState(0)
@@ -162,8 +161,7 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ imageUrl, onComplete, onMove 
 
   // DnD event handlers
   function handleDragStart(event: any) {
-    const idx = parseInt(event.active.id.replace('piece-', ''))
-    setActiveIdx(idx)
+    // activeIdx is not used, so we can remove this function or just leave it empty
   }
   
   function handleDragOver(event: any) {
@@ -177,7 +175,6 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ imageUrl, onComplete, onMove 
   }
   
   function handleDragEnd(event: DragEndEvent) {
-    setActiveIdx(null)
     setOverIdx(null)
     const { active, over } = event
     if (!active || !over) return
