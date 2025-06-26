@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, RotateCcw, Trophy, Settings, Home } from 'lucide-react'
+import { Heart, RotateCcw, Trophy, Home } from 'lucide-react'
 import PuzzleBoard from './components/PuzzleBoard'
 import ImageUpload from './components/ImageUpload'
 import CompletionModal from './components/CompletionModal'

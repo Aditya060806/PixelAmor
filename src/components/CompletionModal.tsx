@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, Trophy, RotateCcw, Star, Share2, Download } from 'lucide-react'
+import { Heart, Trophy, RotateCcw, Star, Share2 } from 'lucide-react'
 
 interface CompletionModalProps {
   moves: number

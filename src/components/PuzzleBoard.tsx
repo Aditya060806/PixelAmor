@@ -20,10 +20,9 @@ function getBackgroundPosition(index: number) {
 }
 
 // Enhanced Draggable puzzle piece in the frame
-function FramePiece({ tile, idx, isDragging, isCorrect }: { 
+function FramePiece({ tile, idx, isCorrect }: { 
   tile: PuzzleTile; 
   idx: number; 
-  isDragging: boolean;
   isCorrect: boolean;
 }) {
   const { attributes, listeners, setNodeRef, transform, isDragging: dndDragging } = useDraggable({
@@ -256,7 +255,6 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ imageUrl, onComplete, onMove 
                 <FramePiece 
                   tile={tiles[tileId]} 
                   idx={idx} 
-                  isDragging={activeIdx === idx}
                   isCorrect={isCorrect}
                 />
               </FrameSlot>
