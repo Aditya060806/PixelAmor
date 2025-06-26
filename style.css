@@ -1,0 +1,264 @@
+:root {
+  --color:rgb(0, 0, 0);
+  --border-radius:10px;
+  --image: url('puzzle-image.jpg');
+  --heart-color: #ff69b4;
+  --glow-color: rgba(255, 105, 180, 0.6);
+}
+
+body {
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+  font-family: 'Comic Sans MS', cursive;
+  overflow: hidden;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.heart {
+  position: fixed;
+  font-size: 20px;
+  color: var(--heart-color);
+  animation: floatHeart 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px var(--glow-color));
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+#puz, #puzz {
+  position:absolute;
+  border-radius:var(--border-radius) 0 var(--border-radius) 0;    
+  user-select:none;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#puz {
+  width:300px;
+  height:300px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  border:3px dashed rgba(255, 255, 255, 0.5);
+  overflow:hidden;
+  box-shadow: 0 0 30px var(--glow-color);
+  backdrop-filter: blur(5px);
+}
+
+#puzz {
+  left:0;
+  top:0;
+  border:0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  pointer-events: none;
+}
+
+#puz i {
+  position: relative;
+  display: inline-block;
+  width:100px;
+  height:100px;
+  outline:1px dashed rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--color);
+  background-image: var(--image);
+  background-size: 300px 300px;
+}
+
+#puzz i {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: var(--color);
+  background-image: var(--image);
+  background-size: 300px 300px;
+  cursor: move;
+  box-shadow: 0 0 20px var(--glow-color);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+#puzz i:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 0 30px var(--glow-color);
+  z-index: 100;
+}
+
+.first {
+  border-top-left-radius:var(--border-radius);
+  background-position:0 0 !important;
+}
+.secon {
+  background-position:-100px 0 !important;
+}
+.third {
+/*   border-top-right-radius:var(--border-radius); */
+  background-position:-200px 0 !important;
+}
+.fourt {
+  background-position:0 -100px !important;
+}
+.fifth {
+  background-position:-100px -100px !important;
+}
+.sixth {  
+  background-position:-200px -100px !important;
+}
+.seven {
+/*   border-bottom-left-radius:var(--border-radius); */
+  background-position:0 -200px !important;
+}
+.eight {
+  background-position:-100px -200px !important;
+}
+.ninth {
+  border-bottom-right-radius:var(--border-radius);
+  background-position:-200px -200px !important;
+}
+
+.clicked {
+  box-shadow:0 0 0 4px var(--heart-color), 0 0 20px var(--glow-color) !important;
+  transform: scale(1.15) rotate(3deg);
+  z-index: 100;
+}
+
+.dropped {
+  background:var(--color);
+  background-image:var(--image);
+  background-size:300px 300px;
+  animation: pulse 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { 
+    transform: scale(1.2);
+    box-shadow: 0 0 40px var(--glow-color);
+  }
+  100% { transform: scale(1); }
+}
+
+.done {
+  opacity:0;
+  pointer-events:none;
+  animation: fadeOut 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeOut {
+  to { 
+    opacity: 0;
+    transform: scale(0.8) rotate(-10deg);
+  }
+}
+
+.allDone {
+  animation:allDone 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  border:3px solid var(--heart-color) !important;
+}
+
+.allDone i {
+  outline:0 !important;
+}
+
+@keyframes allDone {
+  0% { 
+    transform:translate(-50%,-50%) scale(1);
+    box-shadow: 0 0 30px var(--glow-color);
+  }
+  50% { 
+    transform:translate(-50%,-50%) scale(1.3);
+    box-shadow: 0 0 80px var(--glow-color);
+  }
+  100% { 
+    transform:translate(-50%,-50%) scale(1);
+    box-shadow: 0 0 40px var(--glow-color);
+  }
+}
+
+#clicks {
+  font-size:18px;
+  font-family:'Comic Sans MS', cursive;
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  background: rgba(255, 105, 180, 0.3);
+  padding: 12px 25px;
+  border-radius: 25px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: pulseCounter 2s infinite;
+}
+
+@keyframes pulseCounter {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.completion-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  animation: showMessage 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 105, 180, 0.2);
+  padding: 20px 40px;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+}
+
+@keyframes showMessage {
+  0% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+  }
+  20% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+  }
+  80% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.1) rotate(-2deg);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
