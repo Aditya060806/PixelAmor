@@ -160,8 +160,8 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ imageUrl, onComplete, onMove 
   }, [frameTiles])
 
   // DnD event handlers
-  function handleDragStart(event: any) {
-    // activeIdx is not used, so we can remove this function or just leave it empty
+  function handleDragStart() {
+    // This function is required by DndContext but we don't need to do anything here
   }
   
   function handleDragOver(event: any) {
